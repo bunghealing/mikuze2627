@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hành trình MIKUZE - 365 ngày</title>
+    
     <link rel="icon" href="logo1.png" type="image/png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -13,7 +15,6 @@
         body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #FAFAF8; color: #333; }
         .font-serif { font-family: 'Lora', serif; }
         
-        /* Hiệu ứng Holographic Pastel theo hình 2 (mượt mà, không grain) */
         .hero-ombre {
             background: linear-gradient(135deg, #ebd4ef, #f6dae9, #f9f3d5, #cbf3e4, #d0e7fa);
             background-size: 300% 300%;
@@ -28,7 +29,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Classes màu tím Ombre (Hình 1) */
         .purple-ombre-bg {
             background: linear-gradient(90deg, #7840c4, #9f54d6);
             color: white;
@@ -39,7 +39,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Tabs Quý */
         .tab-btn {
             padding: 10px 24px; border-radius: 99px; font-weight: 600; font-size: 14px;
             transition: all 0.3s ease; color: #666; background: #f0f0f0; border: 1px solid transparent;
@@ -48,7 +47,7 @@
             background: linear-gradient(90deg, #7840c4, #9f54d6); color: white; box-shadow: 0 4px 10px rgba(120, 64, 196, 0.3);
         }
 
-        /* Lesson Card */
+        /* GIAO DIỆN MẶC ĐỊNH CHO PC */
         .lesson-card {
             background: white; border: 1px solid #EAEAEA; border-radius: 12px; margin-bottom: 16px;
             transition: all 0.3s ease; overflow: hidden; cursor: pointer;
@@ -59,19 +58,41 @@
         .lesson-card.is-current { border: 2px solid #9f54d6; }
         
         .lesson-header { display: flex; padding: 20px; align-items: center; }
-        .lesson-date { width: 80px; text-align: center; border-right: 1px dashed #EAEAEA; padding-right: 20px; }
-        .lesson-info { flex: 1; padding-left: 20px; }
-        .lesson-action { width: 120px; text-align: right; }
+        .lesson-date { width: 80px; text-align: center; border-right: 1px dashed #EAEAEA; padding-right: 20px; flex-shrink: 0; }
+        .lesson-info { flex: 1; padding-left: 20px; min-width: 0; }
+        .lesson-action { width: 120px; text-align: right; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; }
 
-        /* Tags trạng thái */
+        /* TỐI ƯU RIÊNG CHO ĐIỆN THOẠI (Dưới 768px) */
+        @media (max-width: 768px) {
+            .hero-ombre h1 { font-size: 2.2rem !important; line-height: 1.2; }
+            .hero-ombre p.text-xl { font-size: 1.125rem !important; }
+            .hero-pill { padding: 6px 12px; font-size: 11.5px; margin-bottom: 4px; }
+            
+            .tabs-container { display: grid !important; grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 0 10px; }
+            .tab-btn { padding: 8px 4px; font-size: 12px; width: 100%; white-space: nowrap; }
+
+            .lesson-header { flex-direction: column; align-items: flex-start; padding: 16px; gap: 8px; }
+            
+            .lesson-date { width: 100%; border-right: none; border-bottom: 1px dashed #EAEAEA; padding-right: 0; padding-bottom: 12px; margin-bottom: 4px; display: flex; align-items: baseline; gap: 6px; text-align: left; }
+            .lesson-date > div { margin: 0 !important; display: inline-block; }
+            .lesson-date .text-2xl { font-size: 16px; }
+            .lesson-date .uppercase { text-transform: none; font-weight: 500; font-size: 12px; }
+            
+            .lesson-info { padding-left: 0; width: 100%; }
+            .lesson-info h3 { font-size: 16px; line-height: 1.4; margin-bottom: 10px; }
+            
+            .lesson-action { width: 100%; flex-direction: row-reverse; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 4px; }
+            .lesson-action > div.mb-2 { margin-bottom: 0 !important; }
+        }
+
         .tag {
             display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 6px;
             font-size: 11px; font-weight: 600; margin-right: 8px; border: 1px solid transparent;
+            margin-bottom: 4px;
         }
         .tag.active { background: #f3ebfa; color: #7840c4; border-color: #e5d4f5; }
         .tag.inactive { background: #F9F9F9; color: #999; opacity: 0.6; }
 
-        /* Nút Tải/Link Đính kèm */
         .btn-attachment {
             display: inline-flex; align-items: center; font-size: 13px; font-weight: 500;
             padding: 8px 16px; border-radius: 8px; transition: all 0.2s; margin-right: 8px; margin-bottom: 8px;
@@ -81,7 +102,6 @@
         .btn-link { color: #2563eb; background-color: #eff6ff; }
         .btn-link:hover { background-color: #dbeafe; }
 
-        /* Modal Pop-up */
         .modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.65); z-index: 100;
@@ -112,7 +132,6 @@
             backdrop-filter: blur(4px);
         }
         
-        /* Highlight Đã Học */
         .status-done {
             background-color: #e6f6f4; color: #1f7a68; padding: 4px 12px; border-radius: 99px;
             font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
@@ -127,21 +146,22 @@
         <div class="max-w-5xl mx-auto">
             <div class="flex justify-center mb-6">
                 <div class="text-center">
-                    <!-- Logo mới với chế độ hòa trộn mix-blend-multiply để xóa nền trắng, đã bỏ text bên dưới -->
                     <img src="logo.png" alt="BỤNG Healing" class="h-28 w-auto mx-auto object-contain mb-0 mix-blend-multiply">
                 </div>
             </div>
             
-            <div class="text-center max-w-3xl mx-auto">
+            <!-- Đã nới rộng max-w-3xl lên max-w-4xl để có thêm không gian cho chữ MIKUZE -->
+            <div class="text-center max-w-4xl mx-auto">
                 <p class="text-[13px] font-bold tracking-widest uppercase opacity-80 mb-2 text-[#5b4085]">Chương trình Đồng hành 52 Tuần cùng Mentor Hara Hoàng Vy</p>
-                <h1 class="text-4xl md:text-5xl font-serif font-bold mb-1 tracking-wider purple-ombre-text">MKZ: MASTERMIND LIFESTYLE</h1>
+                <!-- Thêm md:whitespace-nowrap để chữ không bị xuống dòng trên PC -->
+                <h1 class="text-4xl md:text-[2.8rem] lg:text-5xl font-serif font-bold mb-1 tracking-wider purple-ombre-text md:whitespace-nowrap">MKZ: MASTERMIND LIFESTYLE</h1>
                 <p class="text-lg md:text-xl font-medium opacity-90 mb-4 tracking-wide text-[#3f2a63]">Mindfulness - Kundalini Yoga - Zen Leader</p>
                 
                 <div class="text-center mt-11 max-w-2xl mx-auto flex flex-col items-center">
                     <p class="text-base opacity-90 mb-5 leading-relaxed px-4 text-[#3a2b52]">
                         Một nơi duy nhất cho hành trình 52 tuần: lịch học, video ghi hình, tóm tắt, tài liệu và bài tập từng tuần. Bấm vào tuần bất kỳ để xem lại.
                     </p>
-                    <div class="flex flex-wrap gap-3">
+                    <div class="flex flex-wrap gap-3 justify-center">
                         <span class="hero-pill"><i data-lucide="calendar" class="w-4 h-4 mr-2 text-[#7840c4]"></i> 17/09/26 &rarr; 17/09/27</span>
                         <span class="hero-pill"><i data-lucide="clock" class="w-4 h-4 mr-2 text-[#7840c4]"></i> 14h thứ 5 hàng tuần</span>
                         <span class="hero-pill"><i data-lucide="video" class="w-4 h-4 mr-2 text-[#7840c4]"></i> Zoom Online</span>
@@ -171,7 +191,7 @@
                 <i data-lucide="calendar" class="w-5 h-5 mr-2"></i> <span class="text-base">Hôm nay:</span> <span id="dynamic-date" class="font-bold text-gray-900 ml-1 text-base"></span>
             </div>
             <div class="flex items-center">
-                <span class="text-gray-500 mr-2 text-base">Tuần hiện tại:</span>
+                <span class="text-gray-500 mr-2 text-base hidden md:inline">Tuần hiện tại:</span>
                 <span id="dynamic-week-badge" class="purple-ombre-bg text-white px-3 py-1 rounded-full text-xs font-bold shadow-sm">Tuần 4</span>
             </div>
         </div>
@@ -181,7 +201,7 @@
     <main class="max-w-4xl mx-auto px-4 py-12">
         <div class="mb-10">
             <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Lộ trình 4 Quý Chuyển Hóa</h2>
-            <div class="flex flex-wrap justify-center gap-3">
+            <div class="tabs-container flex flex-wrap justify-center gap-3">
                 <button class="tab-btn active" onclick="switchQuarter(1)" id="tab-1">Quý 1 (Tuần 1 - 13)</button>
                 <button class="tab-btn" onclick="switchQuarter(2)" id="tab-2">Quý 2 (Tuần 14 - 26)</button>
                 <button class="tab-btn" onclick="switchQuarter(3)" id="tab-3">Quý 3 (Tuần 27 - 39)</button>
@@ -203,7 +223,6 @@
     <!-- POP-UP MODAL NỘI DUNG (LESSON) -->
     <div id="lesson-modal" class="modal-overlay" onclick="closeModal('lesson-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <!-- Thêm z-[60] để luôn nổi trên video, thêm type="button" và pointer-events-none cho icon -->
             <button type="button" onclick="closeModal('lesson-modal')" class="absolute top-4 right-4 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full transition-colors z-[60] backdrop-blur-sm cursor-pointer shadow-lg">
                 <i data-lucide="x" class="w-5 h-5 pointer-events-none"></i>
             </button>
@@ -216,7 +235,6 @@
         <div class="modal-content modal-content-form flex flex-col" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center p-4 border-b border-gray-100 bg-white sticky top-0 z-50">
                 <h3 class="font-bold text-lg purple-ombre-text" id="submit-modal-title">Nộp bài tập Tuần ...</h3>
-                <!-- Thêm type="button" và pointer-events-none cho icon -->
                 <button type="button" onclick="closeModal('submit-modal')" class="bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-full transition-colors cursor-pointer">
                     <i data-lucide="x" class="w-4 h-4 pointer-events-none"></i>
                 </button>
@@ -250,21 +268,18 @@
         const currentWeekNumDynamic = Math.ceil(diffDaysDynamic / 7) || 1;
         document.getElementById('dynamic-week-badge').textContent = `Tuần ${currentWeekNumDynamic}`;
 
-        // Cập nhật thanh tiến độ 52 tuần
         const totalWeeks = 52;
-        const totalDays = 365; // Đã cập nhật thành 365 ngày
+        const totalDays = 365; 
         
-        // Đảm bảo số tuần/ngày không vượt quá tối đa
         let safeWeek = currentWeekNumDynamic > totalWeeks ? totalWeeks : currentWeekNumDynamic;
         let safeDays = diffDaysDynamic > totalDays ? totalDays : diffDaysDynamic;
-        if(safeDays < 0) safeDays = 0; // Tránh ngày âm nếu chưa bắt đầu
+        if(safeDays < 0) safeDays = 0; 
         
         document.getElementById('progress-text-left').textContent = `Đã học ${safeWeek} / ${totalWeeks} tuần`;
         document.getElementById('progress-text-right').textContent = `Ngày ${safeDays} / ${totalDays}`;
         
-        // Hiệu ứng chạy thanh tiến độ
         setTimeout(() => {
-            const percent = (safeDays / totalDays) * 100; // Tính theo ngày sẽ cho thanh tiến trình mượt hơn
+            const percent = (safeDays / totalDays) * 100; 
             document.getElementById('progress-fill').style.width = `${percent}%`;
         }, 100);
 
@@ -274,12 +289,10 @@
         const detailedWeeks = [
             { 
                 title: "Đánh thức Luân xa Căn bản (Root Chakra - Muladhara)", 
-                // 1. Sửa nội dung tóm tắt ở đây:
                 summary: "Buổi học đầu tiên đưa chúng ta về lại cội nguồn, kết nối với Đất Mẹ và cảm nhận sự vững chãi từ bên trong.", 
                 hasVid: true, hasDoc: true, hasForm: true,
-                // 2. Thêm dòng vidUrl này để chèn link YouTube (lưu ý phải dùng link có chữ /embed/):
                 vidUrl: "https://www.youtube.com/embed/M_yMZ4C_6OI?si=0fhi0CbKEYzHgdkA",
-                //docFiles: [{ name: "File PDF Hướng dẫn", url: "#", type: "pdf" }, { name: "Link tham khảo mở rộng", url: "#", type: "link" }],
+                docFiles: [],
                 exerciseDesc: "Quan sát hơi thở vùng bụng dưới trong 15 phút mỗi sáng. Ghi nhận những cảm giác vật lý xuất hiện."
             },
             { 
@@ -287,7 +300,7 @@
                 summary: "Khơi thông năng lượng sáng tạo và linh hoạt. Thực hành Mindfulness trong cảm xúc.", 
                 hasVid: true, hasDoc: true, hasForm: true,
                 vidUrl: "https://www.youtube.com/embed/ZhTkfCbIeEo?si=rY7bv7qhjV_dCw9o",
-                //docFiles: [{ name: "Kỹ thuật Vipassana", url: "#", type: "pdf" }],
+                docFiles: [],
                 exerciseDesc: "Làm bạn với một cảm xúc khó chịu trong ngày. Quan sát sự khởi sinh, thay đổi và tan biến của nó."
             },
             { 
@@ -364,7 +377,7 @@
                             <h3 class="text-lg font-bold text-gray-900 mb-2">${w.title}</h3>
                             <div class="flex flex-wrap mt-1">${vidTag} ${docTag} ${frmTag}</div>
                         </div>
-                        <div class="lesson-action flex flex-col items-end justify-center">
+                        <div class="lesson-action">
                             <div class="mb-2">${statusBadge}</div>
                             <div class="text-[13px] font-bold text-[#7840c4] flex items-center hover:underline">
                                 Xem nội dung <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
@@ -450,20 +463,15 @@
             
             let googleFormLink = "";
             
-            // Điều kiện: Nếu là Quý 1 (Tuần 1 đến Tuần 13)
             if (weekId >= 1 && weekId <= 13) {
-                // Dán ĐƯỜNG LINK DÀI của bạn vào giữa 2 dấu ngoặc kép bên dưới (nhớ có đuôi ?embedded=true)
                 googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSexZqqoVI6s9BHOqxsl9MylcLA5TSVLWnfSaBNqO2KPxXcb7A/viewform?embedded=true";
             } else if (weekId >= 14 && weekId <= 26) {
-                // Link Form Quý 2 (Tuần 14 đến 26) - Dán link của bạn vào giữa 2 dấu ngoặc kép
                 googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSeaz2rYOFToi4_OOfRjxE0H-UTaGPoMXcRnyfA5q1OK-pkdPw/viewform?embedded=true"; 
                 
             } else if (weekId >= 27 && weekId <= 39) {
-                // Link Form Quý 3 (Tuần 27 đến 39) - Dán link của bạn vào giữa 2 dấu ngoặc kép
                 googleFormLink = ""; 
                 
             } else if (weekId >= 40 && weekId <= 52) {
-                // Link Form Quý 4 (Tuần 40 đến 52) - Dán link của bạn vào giữa 2 dấu ngoặc kép
                 googleFormLink = ""; 
             }
             
@@ -477,7 +485,8 @@
                 document.getElementById('lesson-modal').style.display = 'flex';
             }
         }
-function closeModal(modalId) {
+
+        function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
             
             if (modalId === 'submit-modal') {
@@ -488,6 +497,7 @@ function closeModal(modalId) {
                 document.getElementById('modal-body').innerHTML = ''; 
             }
         }
+
         switchQuarter(1);
     </script>
 </body>
