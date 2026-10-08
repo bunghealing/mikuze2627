@@ -124,7 +124,7 @@
     <!-- HERO SECTION (OMBRE) -->
     <header class="hero-ombre text-[#2a233b] pt-8 pb-16 px-4">
         <div class="max-w-5xl mx-auto">
-            <div class="flex justify-center mb-10">
+            <div class="flex justify-center mb-6">
                 <div class="text-center">
                     <!-- Logo mới với chế độ hòa trộn mix-blend-multiply để xóa nền trắng, đã bỏ text bên dưới -->
                     <img src="./220H TTC (3).png" alt="BỤNG Healing" class="h-24 w-auto mx-auto object-contain mb-2 mix-blend-multiply">
@@ -132,12 +132,12 @@
             </div>
             
             <div class="text-center max-w-3xl mx-auto">
-                <p class="text-[13px] font-bold tracking-widest uppercase opacity-80 mb-6 text-[#5b4085]">Chương trình Đồng hành 52 Tuần cùng Mentor Hara Hoàng Vy</p>
-                <h1 class="text-5xl md:text-6xl font-serif font-bold mb-4 tracking-wider purple-ombre-text">MIKUZE</h1>
-                <p class="text-lg md:text-xl font-medium opacity-90 mb-8 tracking-wide text-[#3f2a63]">Mindfulness - Kundalini Yoga - Zen Leader</p>
+                <p class="text-[13px] font-bold tracking-widest uppercase opacity-80 mb-2 text-[#5b4085]">Chương trình Đồng hành 52 Tuần cùng Mentor Hara Hoàng Vy</p>
+                <h1 class="text-5xl md:text-6xl font-serif font-bold mb-1 tracking-wider purple-ombre-text">MIKUZE</h1>
+                <p class="text-lg md:text-xl font-medium opacity-90 mb-4 tracking-wide text-[#3f2a63]">Mindfulness - Kundalini Yoga - Zen Leader</p>
                 
-                <div class="text-center mt-12 max-w-2xl mx-auto flex flex-col items-center">
-                    <p class="text-base opacity-90 mb-8 leading-relaxed px-4 text-[#3a2b52]">
+                <div class="text-center mt-6 max-w-2xl mx-auto flex flex-col items-center">
+                    <p class="text-base opacity-90 mb-5 leading-relaxed px-4 text-[#3a2b52]">
                         Một nơi duy nhất cho hành trình 52 tuần: lịch học, video ghi hình, tóm tắt, tài liệu và bài tập từng tuần. Bấm vào tuần bất kỳ để xem lại.
                     </p>
                     <div class="flex flex-wrap gap-3">
@@ -439,24 +439,26 @@
 
         function openSubmitModal(weekId) {
             document.getElementById('submit-modal-title').textContent = `Nộp bài tập Tuần ${weekId}`;
-            // NOTE: Nhớ thay YOUR-FORM-ID bằng link thật của form bạn nhé
-            const googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSe-YOUR-FORM-ID/viewform?embedded=true";
+            
+            let googleFormLink = "";
+            
+            // Điều kiện: Nếu là Quý 1 (Tuần 1 đến Tuần 13)
+            if (weekId >= 1 && weekId <= 13) {
+                // Dán ĐƯỜNG LINK DÀI của bạn vào giữa 2 dấu ngoặc kép bên dưới (nhớ có đuôi ?embedded=true)
+                googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSexZqqoVI6s9BHOqxsl9MylcLA5TSVLWnfSaBNqO2KPxXcb7A/viewform?embedded=true";
+            } else {
+                // Form cho Quý 2, 3, 4 sau này (tạm thời để trống hoặc thay link khác)
+                googleFormLink = ""; 
+            }
             
             document.getElementById('lesson-modal').style.display = 'none';
-            document.getElementById('google-form-iframe').src = googleFormLink;
-            document.getElementById('submit-modal').style.display = 'flex';
-        }
-
-        function closeModal(modalId, e) {
-            if(e) e.preventDefault();
-            document.getElementById(modalId).style.display = 'none';
             
-            if(modalId === 'submit-modal') {
-                document.getElementById('lesson-modal').style.display = 'flex';
-                document.getElementById('google-form-iframe').src = ""; 
+            if (googleFormLink !== "") {
+                document.getElementById('google-form-iframe').src = googleFormLink;
+                document.getElementById('submit-modal').style.display = 'flex';
             } else {
-                document.body.style.overflow = 'auto'; 
-                document.getElementById('modal-body').innerHTML = ''; 
+                alert("Bài tập cho tuần này đang được cập nhật!");
+                document.getElementById('lesson-modal').style.display = 'flex';
             }
         }
 
