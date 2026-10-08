@@ -201,25 +201,27 @@
     </footer>
 
     <!-- POP-UP MODAL NỘI DUNG (LESSON) -->
-    <div id="lesson-modal" class="modal-overlay" onclick="closeModal('lesson-modal', event)">
+    <div id="lesson-modal" class="modal-overlay" onclick="closeModal('lesson-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button onclick="closeModal('lesson-modal', event)" class="absolute top-4 right-4 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full transition-colors z-10 backdrop-blur-sm">
-                <i data-lucide="x" class="w-5 h-5"></i>
+            <!-- Thêm z-[60] để luôn nổi trên video, thêm type="button" và pointer-events-none cho icon -->
+            <button type="button" onclick="closeModal('lesson-modal')" class="absolute top-4 right-4 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full transition-colors z-[60] backdrop-blur-sm cursor-pointer shadow-lg">
+                <i data-lucide="x" class="w-5 h-5 pointer-events-none"></i>
             </button>
             <div id="modal-body"></div>
         </div>
     </div>
 
     <!-- POP-UP MODAL NỘP BÀI TẬP -->
-    <div id="submit-modal" class="modal-overlay" onclick="closeModal('submit-modal', event)">
+    <div id="submit-modal" class="modal-overlay" onclick="closeModal('submit-modal')">
         <div class="modal-content modal-content-form flex flex-col" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center p-4 border-b border-gray-100 bg-white sticky top-0 z-10">
+            <div class="flex justify-between items-center p-4 border-b border-gray-100 bg-white sticky top-0 z-50">
                 <h3 class="font-bold text-lg purple-ombre-text" id="submit-modal-title">Nộp bài tập Tuần ...</h3>
-                <button onclick="closeModal('submit-modal', event)" class="bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-full transition-colors">
-                    <i data-lucide="x" class="w-4 h-4"></i>
+                <!-- Thêm type="button" và pointer-events-none cho icon -->
+                <button type="button" onclick="closeModal('submit-modal')" class="bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-full transition-colors cursor-pointer">
+                    <i data-lucide="x" class="w-4 h-4 pointer-events-none"></i>
                 </button>
             </div>
-            <div class="flex-1 bg-[#FDFDFD] relative">
+            <div class="flex-1 bg-white relative">
                 <div class="absolute inset-0 flex items-center justify-center text-gray-400 z-0">
                     <div class="text-center">
                         <i data-lucide="loader" class="w-8 h-8 animate-spin mx-auto mb-2"></i>
@@ -462,7 +464,17 @@
                 document.getElementById('lesson-modal').style.display = 'flex';
             }
         }
-
+function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            
+            if (modalId === 'submit-modal') {
+                document.getElementById('lesson-modal').style.display = 'flex';
+                document.getElementById('google-form-iframe').src = ""; 
+            } else {
+                document.body.style.overflow = 'auto'; 
+                document.getElementById('modal-body').innerHTML = ''; 
+            }
+        }
         switchQuarter(1);
     </script>
 </body>
