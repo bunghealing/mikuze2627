@@ -274,8 +274,11 @@
         const detailedWeeks = [
             { 
                 title: "Đánh thức Luân xa Căn bản (Root Chakra - Muladhara)", 
+                // 1. Sửa nội dung tóm tắt ở đây:
                 summary: "Buổi học đầu tiên đưa chúng ta về lại cội nguồn, kết nối với Đất Mẹ và cảm nhận sự vững chãi từ bên trong.", 
                 hasVid: true, hasDoc: true, hasForm: true,
+                // 2. Thêm dòng vidUrl này để chèn link YouTube (lưu ý phải dùng link có chữ /embed/):
+                vidUrl: "https://www.youtube.com/embed/ID_VIDEO_CUA_BAN",
                 docFiles: [{ name: "File PDF Hướng dẫn", url: "#", type: "pdf" }, { name: "Link tham khảo mở rộng", url: "#", type: "link" }],
                 exerciseDesc: "Quan sát hơi thở vùng bụng dưới trong 15 phút mỗi sáng. Ghi nhận những cảm giác vật lý xuất hiện."
             },
@@ -290,6 +293,7 @@
                 title: "Lửa Nhiệt Huyết (Solar Plexus Chakra - Manipura)", 
                 summary: "Đánh thức sức mạnh ý chí và sự tự tin.", 
                 hasVid: false, hasDoc: false, hasForm: true,
+                vidUrl: "https://www.youtube.com/embed/live/-HlP2uaf_Lo",
                 docFiles: [],
                 exerciseDesc: "Thực hành Breath of Fire (Hơi thở lửa) 3 phút mỗi sáng."
             },
@@ -396,7 +400,7 @@
 
             let modalHtml = `
                 <div class="w-full bg-black aspect-video flex items-center justify-center text-white/50 relative">
-                    ${w.hasVid ? `<iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" frameborder="0" class="w-full h-full absolute top-0 left-0" allowfullscreen></iframe>`
+                    ${w.hasVid ? `<iframe src="${w.vidUrl || 'https://www.youtube.com/embed/ScMzIvxBSi4'}" frameborder="0" class="w-full h-full absolute top-0 left-0 z-0" allowfullscreen></iframe>`
                                : `<div class="text-center"><i data-lucide="video-off" class="w-8 h-8 mx-auto mb-2 opacity-30"></i><p class="text-sm">Video buổi học đang được cập nhật</p></div>`}
                 </div>
                 
