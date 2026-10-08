@@ -453,8 +453,16 @@
             if (weekId >= 1 && weekId <= 13) {
                 // Dán ĐƯỜNG LINK DÀI của bạn vào giữa 2 dấu ngoặc kép bên dưới (nhớ có đuôi ?embedded=true)
                 googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSexZqqoVI6s9BHOqxsl9MylcLA5TSVLWnfSaBNqO2KPxXcb7A/viewform?embedded=true";
-            } else {
-                // Form cho Quý 2, 3, 4 sau này (tạm thời để trống hoặc thay link khác)
+            } else if (weekId >= 14 && weekId <= 26) {
+                // Link Form Quý 2 (Tuần 14 đến 26) - Dán link của bạn vào giữa 2 dấu ngoặc kép
+                googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSeaz2rYOFToi4_OOfRjxE0H-UTaGPoMXcRnyfA5q1OK-pkdPw/viewform?embedded=true"; 
+                
+            } else if (weekId >= 27 && weekId <= 39) {
+                // Link Form Quý 3 (Tuần 27 đến 39) - Dán link của bạn vào giữa 2 dấu ngoặc kép
+                googleFormLink = ""; 
+                
+            } else if (weekId >= 40 && weekId <= 52) {
+                // Link Form Quý 4 (Tuần 40 đến 52) - Dán link của bạn vào giữa 2 dấu ngoặc kép
                 googleFormLink = ""; 
             }
             
