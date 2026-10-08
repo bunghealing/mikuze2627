@@ -316,7 +316,7 @@
             let monthStr = (currentDate.getMonth() + 1).toString().padStart(2, '0');
             let data = { id: i, dateStr: `${dayStr}/${monthStr}`, quarter: Math.ceil(i / 13) };
 
-            if(i <= 5) {
+            if(i <= detailedWeeks.length) {
                 Object.assign(data, detailedWeeks[i-1]);
             } else {
                 Object.assign(data, {
